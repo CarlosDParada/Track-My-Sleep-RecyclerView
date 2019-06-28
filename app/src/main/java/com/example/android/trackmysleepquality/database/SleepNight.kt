@@ -30,7 +30,7 @@ data class SleepNight (
         var startTimeMilli : Long = System.currentTimeMillis(),
 
         @ColumnInfo(name = "end_time_milli")
-        var endTimeMill: Long = startTimeMilli,
+        var endTimeMilli: Long = startTimeMilli,
 
         @ColumnInfo(name = "quality_rating")
         var sleepQuality : Int = -1
