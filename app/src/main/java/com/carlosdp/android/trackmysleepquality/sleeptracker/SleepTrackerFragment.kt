@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.trackmysleepquality.sleeptracker
+package com.carlosdp.android.trackmysleepquality.sleeptracker
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -26,9 +26,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.example.android.trackmysleepquality.R
-import com.example.android.trackmysleepquality.database.SleepDatabase
-import com.example.android.trackmysleepquality.databinding.FragmentSleepTrackerBinding
+import com.carlosdp.android.trackmysleepquality.R
+import com.carlosdp.android.trackmysleepquality.database.SleepDatabase
+import com.carlosdp.android.trackmysleepquality.databinding.FragmentSleepTrackerBinding
+import com.carlosdp.android.trackmysleepquality.sleeptracker.SleepTrackerFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 
 /**
@@ -53,7 +54,7 @@ class SleepTrackerFragment : Fragment() {
 
         var dataSource = SleepDatabase.getInstance(application).sleepDatabaseDao
 
-        val viewModelFactory = SleepTrackerViewModelFactory(dataSource,application)
+        val viewModelFactory = SleepTrackerViewModelFactory(dataSource, application)
 
         val sleepTrackerViewModel = ViewModelProviders.of(this , viewModelFactory).get(SleepTrackerViewModel::class.java)
 
@@ -65,8 +66,7 @@ class SleepTrackerFragment : Fragment() {
             night ->
             night?.let {
                 this.findNavController().navigate(
-                        SleepTrackerFragmentDirections
-                                .actionSleepTrackerFragmentToSleepQualityFragment(night.nightId))
+                        SleepTrackerFragmentDirections.actionSleepTrackerFragmentToSleepQualityFragment(night.nightId))
                 sleepTrackerViewModel.doneNavigation()
             }
 

@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.example.android.trackmysleepquality.sleepquality
+package com.carlosdp.android.trackmysleepquality.sleepquality
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.android.trackmysleepquality.database.SleepDatabaseDao
+import com.carlosdp.android.trackmysleepquality.database.SleepDatabaseDao
 import kotlinx.coroutines.*
 
 class SleepQualityViewModel (

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.trackmysleepquality
+package com.carlosdp.android.trackmysleepquality
 
 import android.annotation.SuppressLint
 import android.content.res.Resources
@@ -22,7 +22,8 @@ import android.os.Build
 import android.text.Html
 import android.text.Spanned
 import androidx.core.text.HtmlCompat
-import com.example.android.trackmysleepquality.database.SleepNight
+import com.carlosdp.android.trackmysleepquality.database.SleepNight
+import com.carlosdp.android.trackmysleepquality.R
 import java.text.SimpleDateFormat
 
 /**

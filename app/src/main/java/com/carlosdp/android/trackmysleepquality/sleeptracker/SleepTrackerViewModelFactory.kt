@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.example.android.trackmysleepquality.sleeptracker
+package com.carlosdp.android.trackmysleepquality.sleeptracker
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.android.trackmysleepquality.database.SleepDatabaseDao
+import com.carlosdp.android.trackmysleepquality.database.SleepDatabaseDao
 
 /**
  * This is pretty much boiler plate code for a ViewModel Factory.

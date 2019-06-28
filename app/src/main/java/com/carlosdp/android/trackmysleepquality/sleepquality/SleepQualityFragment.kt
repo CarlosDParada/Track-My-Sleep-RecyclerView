@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.trackmysleepquality.sleepquality
+package com.carlosdp.android.trackmysleepquality.sleepquality
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -27,10 +27,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.example.android.trackmysleepquality.R
-import com.example.android.trackmysleepquality.database.SleepDatabase
-import com.example.android.trackmysleepquality.database.SleepDatabaseDao
-import com.example.android.trackmysleepquality.databinding.FragmentSleepQualityBinding
+import com.carlosdp.android.trackmysleepquality.R
+import com.carlosdp.android.trackmysleepquality.database.SleepDatabase
+import com.carlosdp.android.trackmysleepquality.database.SleepDatabaseDao
+import com.carlosdp.android.trackmysleepquality.databinding.FragmentSleepQualityBinding
+import com.carlosdp.android.trackmysleepquality.sleepquality.SleepQualityFragmentArgs
+import com.carlosdp.android.trackmysleepquality.sleepquality.SleepQualityFragmentDirections
 
 /**
  * Fragment that displays a list of clickable icons,
@@ -58,7 +60,7 @@ class SleepQualityFragment : Fragment() {
 
         val dataSource = SleepDatabase.getInstance(application).sleepDatabaseDao
 
-        val viewModelFactory = SleepQualityViewModelFactory(arguments.sleepNightKey , dataSource)
+        val viewModelFactory = SleepQualityViewModelFactory(arguments.sleepNightKey, dataSource)
 
         val sleepQualityViewModel =
                 ViewModelProviders.of(

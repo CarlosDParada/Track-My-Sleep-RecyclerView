@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.example.android.trackmysleepquality.sleeptracker
+package com.carlosdp.android.trackmysleepquality.sleeptracker
 
 import android.app.Application
 import android.provider.SyncStateContract.Helpers.insert
 import androidx.lifecycle.*
-import com.example.android.trackmysleepquality.database.SleepDatabaseDao
-import com.example.android.trackmysleepquality.database.SleepNight
-import com.example.android.trackmysleepquality.formatNights
+import com.carlosdp.android.trackmysleepquality.database.SleepDatabaseDao
+import com.carlosdp.android.trackmysleepquality.database.SleepNight
+import com.carlosdp.android.trackmysleepquality.formatNights
 import kotlinx.coroutines.*
 
 /**
@@ -42,7 +42,7 @@ class SleepTrackerViewModel(
     private val nigths = database.getAllNights()
 
     val nightsString = Transformations.map(nigths){ nigths ->
-        formatNights(nigths , application.resources)
+        formatNights(nigths, application.resources)
 
     }
 
