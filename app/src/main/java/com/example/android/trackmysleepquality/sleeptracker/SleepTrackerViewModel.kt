@@ -60,10 +60,19 @@ class SleepTrackerViewModel(
         // Si existen nights return True
     }
 
+    // SnackBar
+    private  var _showSnackbarEvent = MutableLiveData<Boolean>()
+    val  showSnackbarEvent : LiveData<Boolean>
+        get() = _showSnackbarEvent
 
     private val _navigationToSleepQuality = MutableLiveData<SleepNight>()
     val navigationToSleepNight : LiveData<SleepNight>
         get() = _navigationToSleepQuality
+
+    fun doneShowingSnakcbar(){
+        _showSnackbarEvent.value = false
+    }
+
 
     fun doneNavigation(){
         _navigationToSleepQuality.value = null
@@ -131,6 +140,7 @@ class SleepTrackerViewModel(
         uiScope.launch {
             clear()
             tonigth.value = null
+            _showSnackbarEvent.value = true
         }
 
     }
