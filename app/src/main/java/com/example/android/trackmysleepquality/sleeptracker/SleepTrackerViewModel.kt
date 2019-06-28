@@ -50,6 +50,10 @@ class SleepTrackerViewModel(
     val navigationToSleepNight : LiveData<SleepNight>
         get() = _navigationToSleepQuality
 
+    fun doneNavigation(){
+        _navigationToSleepQuality.value = null
+    }
+
 
     init {
         initializeTonigth()
@@ -88,9 +92,17 @@ class SleepTrackerViewModel(
     /* STOP */
     fun onStopTracking(){
         uiScope.launch {
+            // InKotlin the return@label syntax is used for specifying wich functions among
+            // several nested ones this statement returns from
+            // In this case, we are specifying to return from launch)=,
+            // not the lamba
             val oldNight = tonigth.value?: return@launch
+            // Update the night in the data base to add the end time
             oldNight.endTimeMilli = System.currentTimeMillis()
             update(oldNight)
+
+            // For Navigation
+            _navigationToSleepQuality.value = oldNight
         }
     }
 
