@@ -46,6 +46,21 @@ class SleepTrackerViewModel(
 
     }
 
+    // For enable or desanable button
+    val startButtonVisible = Transformations.map(tonigth){
+        null == it // Si no existe tonight return True
+    }
+    val stopButtonVisible = Transformations.map(tonigth){
+        null != it
+        // Si no existe tonight return false
+        // Si se inicial tonight return True
+    }
+    val clearButtonVisible = Transformations.map(nigths){
+        it?.isNotEmpty()
+        // Si existen nights return True
+    }
+
+
     private val _navigationToSleepQuality = MutableLiveData<SleepNight>()
     val navigationToSleepNight : LiveData<SleepNight>
         get() = _navigationToSleepQuality
