@@ -39,6 +39,7 @@ class SleepNigthAdapter: RecyclerView.Adapter<SleepNigthAdapter.ViewHolder>(){
         val  qualityImage : ImageView = itemView.findViewById(R.id.quality_image)
 
         fun bind(item: SleepNight) {
+            val res = itemView.context.resources
             sleepLength.text = convertDurationToFormatted(item.startTimeMilli, item.endTimeMilli, res)
             quality.text = convertNumericQualityToString(item.sleepQuality, res)
             qualityImage.setImageResource(when (item.sleepQuality) {
