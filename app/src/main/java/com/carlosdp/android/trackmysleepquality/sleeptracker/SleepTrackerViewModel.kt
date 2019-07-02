@@ -17,7 +17,6 @@
 package com.carlosdp.android.trackmysleepquality.sleeptracker
 
 import android.app.Application
-import android.provider.SyncStateContract.Helpers.insert
 import androidx.lifecycle.*
 import com.carlosdp.android.trackmysleepquality.database.SleepDatabaseDao
 import com.carlosdp.android.trackmysleepquality.database.SleepNight
@@ -38,10 +37,12 @@ class SleepTrackerViewModel(
     }
 
     private  val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob) // UIScope will run on the main thread
-    private var tonigth = MutableLiveData <SleepNight?>()
-    private val nigths = database.getAllNights()
 
-    val nightsString = Transformations.map(nigths){ nigths ->
+    private var tonigth = MutableLiveData <SleepNight?>()
+
+    val nights = database.getAllNights()
+
+    val nightsString = Transformations.map(nights){ nigths ->
         formatNights(nigths, application.resources)
 
     }
@@ -55,7 +56,7 @@ class SleepTrackerViewModel(
         // Si no existe tonight return false
         // Si se inicial tonight return True
     }
-    val clearButtonVisible = Transformations.map(nigths){
+    val clearButtonVisible = Transformations.map(nights){
         it?.isNotEmpty()
         // Si existen nights return True
     }
