@@ -7,12 +7,17 @@
         <variable
             name="sleepDTO"
             type="com.carlosdp.android.trackmysleepquality.database.SleepNight" />
+
+        <variable
+            name="clickListener"
+            type="com.carlosdp.android.trackmysleepquality.sleeptracker.SleepNigthListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00D6C8C8">
+        android:background="#00D6C8C8"
+        android:onClick="@{()-> clickListener.onClick(sleepDTO)}">
 
 
         <ImageView
