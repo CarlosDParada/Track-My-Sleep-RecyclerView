@@ -20,8 +20,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -29,9 +27,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.carlosdp.android.trackmysleepquality.R
-import com.carlosdp.android.trackmysleepquality.convertNumericQualityToString
 import com.carlosdp.android.trackmysleepquality.database.SleepDatabase
-import com.carlosdp.android.trackmysleepquality.database.SleepNight
 import com.carlosdp.android.trackmysleepquality.databinding.FragmentSleepTrackerBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -68,9 +64,22 @@ class SleepTrackerFragment : Fragment() {
         binding.sleepList.layoutManager = manager
 
         val adapter = SleepNightAdapter(SleepNigthListener {
-            night -> Toast.makeText(context, "${night.nightId} - ${convertNumericQualityToString(night.sleepQuality , this.resources)}", Toast.LENGTH_SHORT).show()
+//            night -> Toast.makeText(context, "${night.nightId} - ${convertNumericQualityToString(night.sleepQuality , this.resources)}", Toast.LENGTH_SHORT).show()
+            // Navigate on Click
+            night -> sleepTrackerViewModel.onSleepNightClicked(night)
         })
         binding.sleepList.adapter = adapter
+
+        //Navigate on Click
+    sleepTrackerViewModel.navigateToSleepDataQuality.observe(this, Observer { night ->
+        night?.let{
+            this.findNavController().navigate(
+                    SleepTrackerFragmentDirections
+                            .actionSleepTrackerFragmentToSleepDetailFragment(night))
+            sleepTrackerViewModel.onSleepDataQualityNavigated()
+        }
+    })
+
 
         sleepTrackerViewModel.nights.observe(viewLifecycleOwner , Observer {
             it?.let {
